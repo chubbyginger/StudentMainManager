@@ -1,4 +1,4 @@
-# StudentMainManager
+# StudentMain Manager
 一个专杀极域电子教室的Python程序，具有基于wxPython的GUI。
 
 ## 原理
