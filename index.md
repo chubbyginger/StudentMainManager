@@ -1,37 +1,22 @@
-## Welcome to GitHub Pages
+# StudentMain Manager
+一个专杀极域电子教室的Python程序，具有基于wxPython的GUI。
 
-You can use the [editor on GitHub](https://github.com/yangshunhuai/StudentMainManager/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+## 原理
+* 使用NTSD调试工具，取得Debug权限后强制结束极域教室（无论极域教室有没有设置任务管理器防杀）。
+* 使用微软官方Sysinternals的工具PsSuspend挂起StudentMain进程，可以使得教师端定格画面但不会显示学生端断开。
+* 使用IE的全屏模式，将教师端控制屏幕变成一个窗口，可以在进行自己的操作的同时看老师上课。
+* 可以配套使用GitHub用户 @快乐的梦鱼 的JiYuTrainer，取得更好的控制效果。
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## 有关早期版本
+本程序的早期版本由我在六年级时使用批处理编写，具有一个文字界面，缺少一些非常基本的功能，比如说保持最前端显示。
 
-### Markdown
+由于代码过于粗鄙，这里就不放出来了。
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+##免责声明
+若你使用本程序，即认为你已阅读并同意以下条款：
 
-```markdown
-Syntax highlighted code block
+* 本程序仅供学习交流之用途，禁止将本程序用于任何不道德、不遵守法律的行为。如果不遵守，产生的后果自负。
+* 本程序从你已经了解老师上课的内容的角度出发。如果你希望使用本软件，请务必保证你已经了解老师上课的内容。 如果因为不了解上课内容而导致对学业成绩的影响，后果自负。
 
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/yangshunhuai/StudentMainManager/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+## 开源许可
+MIT License（详情请见/LICENSE）。
