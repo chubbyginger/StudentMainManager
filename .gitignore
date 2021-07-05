@@ -1,3 +1,7 @@
 /binaries/ntsd.exe
 /binaries/pssuspend.exe
 /binaries/JiYuTrainer/JiYuTrainer.exe
+/binaries/JiYuTrainer/JiYuTrainer.ini
+/binaries/JiYuTrainer/JiYuTrainer.log
+/binaries/JiYuTrainer/JiYuTrainerHooks.dll
+/binaries/JiYuTrainer/sciter.dll
