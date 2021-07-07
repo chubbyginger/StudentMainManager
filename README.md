@@ -26,4 +26,4 @@
   如果因为不了解上课内容而导致对学业成绩的影响，后果自负。
 
 ## 开源许可
-MIT License（详情请见`/LICENSE`）。
+Apache-2.0 License（详情请见`/LICENSE`）。
