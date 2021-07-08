@@ -5,6 +5,7 @@
 #
 
 import wx
+import utils
 
 # begin wxGlade: dependencies
 import wx.adv
