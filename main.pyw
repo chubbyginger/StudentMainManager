@@ -12,15 +12,16 @@ import wx.adv
 # end wxGlade
 
 # begin wxGlade: extracode
+pathToJiYu = utils.getPathFromCfg()
 # end wxGlade
 
 
 class MainFrame(wx.Frame):
     def __init__(self, *args, **kwds):
         # begin wxGlade: MainFrame.__init__
-        kwds["style"] = kwds.get("style", 0) | wx.DEFAULT_FRAME_STYLE
+        kwds["style"] = kwds.get("style", 0) | wx.DEFAULT_FRAME_STYLE | wx.TAB_TRAVERSAL
         wx.Frame.__init__(self, *args, **kwds)
-        self.SetSize((400, 350))
+        self.SetSize((400, 300))
         self.SetTitle("StudentMain Manager")
         _icon = wx.NullIcon
         _icon.CopyFromBitmap(wx.Bitmap("image-res\\StudentMainManager.ico", wx.BITMAP_TYPE_ANY))
@@ -70,7 +71,7 @@ class MainFrame(wx.Frame):
         sizer_3 = wx.StaticBoxSizer(wx.StaticBox(self.killPage, wx.ID_ANY, u"警告"), wx.VERTICAL)
         sizer_1.Add(sizer_3, 1, wx.ALIGN_CENTER_HORIZONTAL, 0)
 
-        label_4 = wx.StaticText(self.killPage, wx.ID_ANY, u"使用NTSD强制结束时教师端会有提示！\n请谨慎使用！\n\n不建议使用强制删除极域教室的操作。\n仅建议在实在无法结束极域时使用。")
+        label_4 = wx.StaticText(self.killPage, wx.ID_ANY, u"使用NTSD强制结束时教师端会有提示！\n请谨慎使用！\n不建议使用强制删除极域教室的操作。")
         sizer_3.Add(label_4, 0, wx.ALIGN_CENTER_HORIZONTAL, 0)
 
         self.controlPage = wx.Panel(self.notebook, wx.ID_ANY)
@@ -78,7 +79,7 @@ class MainFrame(wx.Frame):
 
         sizer_4 = wx.BoxSizer(wx.VERTICAL)
 
-        self.controlOptionBox = wx.RadioBox(self.controlPage, wx.ID_ANY, u"请选择一个操作", choices=[u"IE全屏窗口化", u"读取极域教室控制密码"], majorDimension=1, style=wx.RA_SPECIFY_COLS)
+        self.controlOptionBox = wx.RadioBox(self.controlPage, wx.ID_ANY, u"请选择一个操作", choices=[u"IE全屏窗口化", u"读取极域教室控制密码", u"替换sethc.exe快捷键", u"还原sethc.exe快捷键"], majorDimension=1, style=wx.RA_SPECIFY_COLS)
         self.controlOptionBox.SetSelection(0)
         sizer_4.Add(self.controlOptionBox, 0, wx.EXPAND, 0)
 
@@ -100,39 +101,36 @@ class MainFrame(wx.Frame):
         self.configPage = wx.Panel(self.notebook, wx.ID_ANY)
         self.notebook.AddPage(self.configPage, u"设置")
 
-        grid_sizer_2 = wx.GridSizer(5, 2, 0, 0)
+        sizer_6 = wx.BoxSizer(wx.VERTICAL)
 
-        label_5 = wx.StaticText(self.configPage, wx.ID_ANY, u"极域教室主程序路径")
+        grid_sizer_2 = wx.GridSizer(3, 2, 0, 0)
+        sizer_6.Add(grid_sizer_2, 0, 0, 0)
+        label_5 = wx.StaticText(self.configPage, wx.ID_ANY, u"极域教室安装路径")
         label_5.SetFont(wx.Font(14, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, 0, ""))
         grid_sizer_2.Add(label_5, 0, wx.ALIGN_CENTER, 0)
 
-        self.installPathText = wx.TextCtrl(self.configPage, wx.ID_ANY, "C:\\Program Files\\TopDomain\\e-Learning Class\\StudentMain.exe")
+        self.installPathText = wx.TextCtrl(self.configPage, wx.ID_ANY, "C:\\Program Files\\TopDomain\\e-Learning Class\\")
         self.installPathText.SetMinSize((180, 25))
         grid_sizer_2.Add(self.installPathText, 0, wx.ALIGN_CENTER, 0)
 
         label_6 = wx.StaticText(self.configPage, wx.ID_ANY, u"窗口置顶")
         label_6.SetFont(wx.Font(14, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, 0, ""))
-        grid_sizer_2.Add(label_6, 0, wx.ALIGN_CENTER, 0)
+        grid_sizer_2.Add(label_6, 0, wx.ALIGN_CENTER_HORIZONTAL, 0)
 
         self.windowAtTopCheck = wx.CheckBox(self.configPage, wx.ID_ANY, "")
         self.windowAtTopCheck.SetValue(1)
-        grid_sizer_2.Add(self.windowAtTopCheck, 0, wx.ALIGN_CENTER, 0)
+        grid_sizer_2.Add(self.windowAtTopCheck, 0, wx.ALIGN_CENTER_HORIZONTAL, 0)
 
         label_7 = wx.StaticText(self.configPage, wx.ID_ANY, u"自动更新")
         label_7.SetFont(wx.Font(14, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, 0, ""))
-        grid_sizer_2.Add(label_7, 0, wx.ALIGN_CENTER, 0)
+        grid_sizer_2.Add(label_7, 0, wx.ALIGN_CENTER_HORIZONTAL, 0)
 
         self.autoUpdateCheck = wx.CheckBox(self.configPage, wx.ID_ANY, "")
         self.autoUpdateCheck.SetValue(1)
-        grid_sizer_2.Add(self.autoUpdateCheck, 0, wx.ALIGN_CENTER, 0)
+        grid_sizer_2.Add(self.autoUpdateCheck, 0, wx.ALIGN_CENTER_HORIZONTAL, 0)
 
-        grid_sizer_2.Add((0, 0), 0, 0, 0)
-
-        grid_sizer_2.Add((0, 0), 0, 0, 0)
-
-        grid_sizer_2.Add((0, 0), 0, 0, 0)
-
-        grid_sizer_2.Add((0, 0), 0, 0, 0)
+        self.saveButton = wx.Button(self.configPage, wx.ID_ANY, u"保存设置")
+        sizer_6.Add(self.saveButton, 0, wx.ALIGN_CENTER_HORIZONTAL, 0)
 
         self.aboutPage = wx.Panel(self.notebook, wx.ID_ANY)
         self.notebook.AddPage(self.aboutPage, u"关于")
@@ -163,7 +161,7 @@ class MainFrame(wx.Frame):
         self.viewLicense.SetFont(wx.Font(12, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, 0, ""))
         sizer_5.Add(self.viewLicense, 0, wx.ALIGN_CENTER_HORIZONTAL, 0)
 
-        self.viewTrainerLicense = wx.adv.HyperlinkCtrl(self.aboutPage, wx.ID_ANY, u"查看 JiYuTrainer 开放源代码协议: MIT License", "https://github.com/imengyu/JiYuTrainer/blob/main/LICENSE")
+        self.viewTrainerLicense = wx.adv.HyperlinkCtrl(self.aboutPage, wx.ID_ANY, u"查看 JiYuTrainer 开放源代码协议: MIT License", "https://github.com/imengyu/JiYuTrainer/blob/master/LICENSE")
         self.viewTrainerLicense.SetFont(wx.Font(12, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, 0, ""))
         sizer_5.Add(self.viewTrainerLicense, 0, wx.ALIGN_CENTER_HORIZONTAL, 0)
 
@@ -173,7 +171,7 @@ class MainFrame(wx.Frame):
 
         self.aboutPage.SetSizer(sizer_5)
 
-        self.configPage.SetSizer(grid_sizer_2)
+        self.configPage.SetSizer(sizer_6)
 
         self.restorePage.SetSizer(sizer_2)
 
@@ -189,11 +187,9 @@ class MainFrame(wx.Frame):
         self.Bind(wx.EVT_BUTTON, self.executeKill, self.killButton)
         self.Bind(wx.EVT_BUTTON, self.executeControl, self.controlButton)
         self.Bind(wx.EVT_BUTTON, self.executeRestart, self.startButton)
-        self.Bind(wx.EVT_CHECKBOX, self.checkedWindowAtTop, self.windowAtTopCheck)
-        self.Bind(wx.EVT_CHECKBOX, self.checkedAutoUpdate, self.autoUpdateCheck)
+        self.Bind(wx.EVT_BUTTON, self.saveButton, self.saveConfig)
         self.Bind(wx.EVT_BUTTON, self.checkUpdate, self.checkUpdateButton)
         # end wxGlade
-
     def executeKill(self, event):  # wxGlade: MainFrame.<event_handler>
         killOption = self.killOptionBox.GetSelection()
         if killOption == 0:
@@ -201,7 +197,7 @@ class MainFrame(wx.Frame):
         elif killOption == 1:
             utils.suspend()
         elif killOption == 2:
-            utils.trashJiYu()
+            utils.trashJiYu(pathToJiYu)
 
     def executeControl(self, event):  # wxGlade: MainFrame.<event_handler>
         print("Event handler 'executeControl' not implemented!")
@@ -210,13 +206,9 @@ class MainFrame(wx.Frame):
     def executeRestart(self, event):  # wxGlade: MainFrame.<event_handler>
         print("Event handler 'executeRestart' not implemented!")
         event.Skip()
-
-    def checkedWindowAtTop(self, event):  # wxGlade: MainFrame.<event_handler>
-        print("Event handler 'checkedWindowAtTop' not implemented!")
-        event.Skip()
-
-    def checkedAutoUpdate(self, event):  # wxGlade: MainFrame.<event_handler>
-        print("Event handler 'checkedAutoUpdate' not implemented!")
+    
+    def saveConfig(self, event):
+        print("Event handler 'saveConfig' not implemented!")
         event.Skip()
 
     def checkUpdate(self, event):  # wxGlade: MainFrame.<event_handler>
