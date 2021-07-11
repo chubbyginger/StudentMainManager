@@ -34,7 +34,7 @@ class MainFrame(wx.Frame):
         self.notebook = wx.Notebook(self, wx.ID_ANY)
 
         self.statusPage = wx.Panel(self.notebook, wx.ID_ANY)
-        self.notebook.AddPage(self.statusPage, u"极域教室状态")
+        self.notebook.AddPage(self.statusPage, u"状态")
 
         grid_sizer_1 = wx.GridSizer(3, 2, 0, 0)
 
@@ -79,7 +79,7 @@ class MainFrame(wx.Frame):
 
         sizer_4 = wx.BoxSizer(wx.VERTICAL)
 
-        self.controlOptionBox = wx.RadioBox(self.controlPage, wx.ID_ANY, u"请选择一个操作", choices=[u"IE全屏窗口化", u"读取极域教室控制密码", u"替换sethc.exe快捷键", u"还原sethc.exe快捷键"], majorDimension=1, style=wx.RA_SPECIFY_COLS)
+        self.controlOptionBox = wx.RadioBox(self.controlPage, wx.ID_ANY, u"请选择一个操作", choices=[u"IE全屏窗口化", u"读取极域教室控制密码", u"替换sethc.exe快捷键", u"还原sethc.exe快捷键", u"启动JiYuTrainer"], majorDimension=1, style=wx.RA_SPECIFY_COLS)
         self.controlOptionBox.SetSelection(0)
         sizer_4.Add(self.controlOptionBox, 0, wx.EXPAND, 0)
 
@@ -187,7 +187,7 @@ class MainFrame(wx.Frame):
         self.Bind(wx.EVT_BUTTON, self.executeKill, self.killButton)
         self.Bind(wx.EVT_BUTTON, self.executeControl, self.controlButton)
         self.Bind(wx.EVT_BUTTON, self.executeRestart, self.startButton)
-        self.Bind(wx.EVT_BUTTON, self.saveButton, self.saveConfig)
+        self.Bind(wx.EVT_BUTTON, self.saveConfig, self.saveButton)
         self.Bind(wx.EVT_BUTTON, self.checkUpdate, self.checkUpdateButton)
         # end wxGlade
     def executeKill(self, event):  # wxGlade: MainFrame.<event_handler>
