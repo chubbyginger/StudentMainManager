@@ -12,7 +12,7 @@ import wx.adv
 # end wxGlade
 
 # begin wxGlade: extracode
-pathToJiYu = utils.getPathFromCfg()
+pathToJiYu = utils.jiYuPath
 # end wxGlade
 
 
@@ -121,14 +121,6 @@ class MainFrame(wx.Frame):
         self.windowAtTopCheck.SetValue(1)
         grid_sizer_2.Add(self.windowAtTopCheck, 0, wx.ALIGN_CENTER_HORIZONTAL, 0)
 
-        label_7 = wx.StaticText(self.configPage, wx.ID_ANY, u"自动更新")
-        label_7.SetFont(wx.Font(14, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, 0, ""))
-        grid_sizer_2.Add(label_7, 0, wx.ALIGN_CENTER_HORIZONTAL, 0)
-
-        self.autoUpdateCheck = wx.CheckBox(self.configPage, wx.ID_ANY, "")
-        self.autoUpdateCheck.SetValue(1)
-        grid_sizer_2.Add(self.autoUpdateCheck, 0, wx.ALIGN_CENTER_HORIZONTAL, 0)
-
         self.saveButton = wx.Button(self.configPage, wx.ID_ANY, u"保存设置")
         sizer_6.Add(self.saveButton, 0, wx.ALIGN_CENTER_HORIZONTAL, 0)
 
@@ -193,7 +185,9 @@ class MainFrame(wx.Frame):
     def executeKill(self, event):  # wxGlade: MainFrame.<event_handler>
         killOption = self.killOptionBox.GetSelection()
         if killOption == 0:
-            utils.NTSDKill()
+            if utils.NTSDKill() == 1:
+                dlg = wx.MessageDialog(self, '没有找到NTSD程序！请检查设置文件中NTSD路径是否正确。', '警告', wx.OK | wx.ICON_ERROR)
+                dlg.ShowModal()
         elif killOption == 1:
             utils.suspend()
         elif killOption == 2:

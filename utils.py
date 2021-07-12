@@ -3,42 +3,45 @@
 import os
 import configparser
 
+defaultConfigFile = '[JiYu]\n'
+defaultConfigFile += 'pathToJiYu=C:\\\\Program Files\\\\TopDomain\\\\e-Learning Class\\\\\n'
+defaultConfigFile += '\n'
+defaultConfigFile += '[utilities]\n'
+defaultConfigFile += 'ntsdPath=.\\\\binaries\\\\ntsd.exe\n'
+defaultConfigFile += 'suspenderPath=.\\\\binaries\\\\pssuspend.exe\n'
+defaultConfigFile += 'jiYuTrainerPath=.\\\\binaries\\\\JiYuTrainer\\\\JiYuTrainer.exe\n'
+defaultConfigFile += '\n'
+defaultConfigFile += '[Misc]\n'
+defaultConfigFile += 'autoUpdate=1'
+
 if os.path.isfile('config.ini'):
     configFile = open('config.ini')
     parser = configparser.ConfigParser()
     parser.read('config.ini')
 else:
     configFile = open('config.ini', 'w')
-    configFile.write('[JiYu]\n')
-    configFile.write('pathToJiYu=C:\\\\Program Files\\\\TopDomain\\\\e-Learning Class\\\\')
+    configFile.write(defaultConfigFile)
     configFile.close()
+    parser = configparser.ConfigParser()
+    parser.read('config.ini')
 
-def getConfigExist():
-    return os.path.isfile('config.ini')
-
-def getPathFromCfg():
-    JiYuPath = parser.get('JiYu', 'pathToJiYu')
-    return JiYuPath
-
-# Here are the checking functions
-def checkNTSD():
-    return os.path.isfile('./binaries/ntsd.exe')
-
-def checkPsSuspend():
-    return os.path.isfile('./binaries/pssuspend.exe')
-
-def checkJiYuTrainer():
-    return os.path.isfile('./binaries/JiYuTrainer/JiYuTrainer.exe')
-
-def checkUpdater():
-    return os.path.isfile('./AutoUpdate.exe')
-
+jiYuPath = parser.get('JiYu', 'pathToJiYu')
+ntsdPath = parser.get('utilities', 'ntsdPath')
+suspenderPath = parser.get('utilities', 'suspenderPath')
 
 def NTSDKill():
-    os.system('.\\binaries\\ntsd.exe -c q -pn StudentMain.exe')
+    if os.path.isfile(ntsdPath):
+        os.system('.\\binaries\\ntsd.exe -c q -pn StudentMain.exe')
+        return 0
+    else:
+        return 1
 
 def suspend():
-    os.system('.\\binaries\\pssuspend.exe StudentMain.exe')
+    if os.path.isfile(suspenderPath):
+        os.system('.\\binaries\\pssuspend.exe StudentMain.exe')
+        return 0
+    else:
+        return 1
 
-def trashJiYu(JiYuPath):
-    os.rmdir(JiYuPath)
+def trashJiYu():
+    os.rmdir(jiYuPath)
