@@ -38,10 +38,16 @@ def NTSDKill():
 
 def suspend():
     if os.path.isfile(suspenderPath):
-        os.system('.\\binaries\\pssuspend.exe StudentMain.exe')
+        if 'suspended' in os.popen(suspenderPath + ' StudentMain.exe'):
+             return 0
+        else:
+            return 1
+    else:
+        return -1
+
+def trashJiYu():
+    if os.path.isdir(jiYuPath):
+        os.rmdir(jiYuPath)
         return 0
     else:
         return 1
-
-def trashJiYu():
-    os.rmdir(jiYuPath)

@@ -157,9 +157,9 @@ class MainFrame(wx.Frame):
         self.viewTrainerLicense.SetFont(wx.Font(12, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, 0, ""))
         sizer_5.Add(self.viewTrainerLicense, 0, wx.ALIGN_CENTER_HORIZONTAL, 0)
 
-        self.checkUpdateButton = wx.Button(self.aboutPage, wx.ID_ANY, u"检查 StudentMain Manager 更新")
-        self.checkUpdateButton.SetFont(wx.Font(12, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, 0, ""))
-        sizer_5.Add(self.checkUpdateButton, 0, wx.ALIGN_CENTER_HORIZONTAL, 0)
+        self.checkUpdate = wx.adv.HyperlinkCtrl(self.aboutPage, wx.ID_ANY, u"检查 StudentMain Manager 更新", "https://github.com/yangshunhuai/StudentMainManager/releases")
+        self.checkUpdate.SetFont(wx.Font(12, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, 0, ""))
+        sizer_5.Add(self.checkUpdate, 0, wx.ALIGN_CENTER_HORIZONTAL, 0)
 
         self.aboutPage.SetSizer(sizer_5)
 
@@ -180,18 +180,28 @@ class MainFrame(wx.Frame):
         self.Bind(wx.EVT_BUTTON, self.executeControl, self.controlButton)
         self.Bind(wx.EVT_BUTTON, self.executeRestart, self.startButton)
         self.Bind(wx.EVT_BUTTON, self.saveConfig, self.saveButton)
-        self.Bind(wx.EVT_BUTTON, self.checkUpdate, self.checkUpdateButton)
         # end wxGlade
     def executeKill(self, event):  # wxGlade: MainFrame.<event_handler>
         killOption = self.killOptionBox.GetSelection()
         if killOption == 0:
             if utils.NTSDKill() == 1:
-                dlg = wx.MessageDialog(self, '没有找到NTSD程序！请检查设置文件中NTSD路径是否正确。', '警告', wx.OK | wx.ICON_ERROR)
+                dlg = wx.MessageDialog(self, '没有找到NTSD程序！\n请检查设置文件中NTSD路径是否正确。', 'StudentMain Manager 错误', wx.OK | wx.ICON_ERROR)
                 dlg.ShowModal()
         elif killOption == 1:
-            utils.suspend()
+            result = utils.suspend()
+            if result == 0:
+                dlg = wx.MessageDialog(self, '挂起成功！', 'StudentMain Manager 提示', wx.OK | wx.ICON_INFORMATION)
+                dlg.ShowModal()
+            elif result == 1:
+                dlg = wx.MessageDialog(self, '挂起失败！', 'StudentMain Manager 提示', wx.OK | wx.ICON_INFORMATION)
+                dlg.ShowModal()
+            else:
+                dlg = wx.MessageDialog(self, '没有找到PsSuspend程序！\n请检查设置文件中PsSuspend路径是否正确。', 'StudentMain Manager 错误', wx.OK | wx.ICON_ERROR)
+                dlg.ShowModal()
         elif killOption == 2:
-            utils.trashJiYu(pathToJiYu)
+            if utils.trashJiYu() == 1:
+                dlg = wx.MessageDialog(self, '极域教室路径设置错误！\n请检查设置中极域教室路径是否正确。', 'StudentMain Manager 错误', wx.OK | wx.ICON_ERROR)
+                dlg.ShowModal()
 
     def executeControl(self, event):  # wxGlade: MainFrame.<event_handler>
         print("Event handler 'executeControl' not implemented!")
@@ -203,10 +213,6 @@ class MainFrame(wx.Frame):
     
     def saveConfig(self, event):
         print("Event handler 'saveConfig' not implemented!")
-        event.Skip()
-
-    def checkUpdate(self, event):  # wxGlade: MainFrame.<event_handler>
-        print("Event handler 'checkUpdate' not implemented!")
         event.Skip()
 
 # end of class MainFrame
