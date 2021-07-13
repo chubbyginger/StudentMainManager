@@ -1,7 +1,9 @@
 /__pycache__
 /ui/__pycache__
+/build
 /binaries/ntsd.exe
 /binaries/pssuspend.exe
+/binaries/PSethc.exe
 /binaries/JiYuTrainer/JiYuTrainer.exe
 /binaries/JiYuTrainer/JiYuTrainer.ini
 /binaries/JiYuTrainer/JiYuTrainer.log
