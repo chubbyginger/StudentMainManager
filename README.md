@@ -16,7 +16,17 @@
 
 ## 手动编译
 
-用于编译本程序的脚本放在`build.bat`文件中，安装`pyinstaller`后直接运行即可在`build`文件夹下生成发行版（可以直接使用）。
+1. 使用`PyInstaller`编译`main.pyw`：
+
+   ```
+   pyinstaller --onefile --icon .\image-res\StudentMainManager.ico main.pyw
+   ```
+
+2. 将无用的`build`文件夹、`__pycache__`和`main.spec`文件删除。
+
+3. 新建一个文件夹，将`dist`文件夹中的`main.exe`复制过去，改名为`StudentMainManager.exe`。
+
+4. 将`config.ini`、`binaries`文件夹复制过去，即可使用。
 
 ## 有关早期版本
 本程序的早期版本由我在六年级时使用批处理编写，具有一个文字界面，缺少一些非常基本的功能，比如说保持最前端显示。
