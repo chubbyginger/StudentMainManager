@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# -*- coding: UTF-8 -*-
+# coding: UTF-8
 # StudentMain Manager main functions are put here.
 
 import os

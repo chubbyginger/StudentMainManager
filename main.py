@@ -1,4 +1,5 @@
 ﻿#!/usr/bin/env python3
+# coding: UTF-8
 # This is only a UI file. The main functions are in the utils.py program.
 
 import wx
@@ -9,7 +10,7 @@ import time
 
 pathToJiYu = utils.jiYuPath
 winOnTop = utils.winOnTop
-version = '1.0.0-beta'
+version = '1.0.1-beta'
 
 
 class MainFrame(wx.Frame):
@@ -294,4 +295,5 @@ class MyApp(wx.App):
 
 if __name__ == "__main__":
     main = MyApp(0)
+    main.locale = wx.Locale(wx.LANGUAGE_CHINESE_SIMPLIFIED)
     main.MainLoop()
