@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
+# -*- coding: UTF-8 -*-
 # StudentMain Manager main functions are put here.
 
 import os
 import shutil
+import psutil
 import configparser
 import winreg
 
@@ -43,6 +45,25 @@ if parser.get('Misc', 'stayOnTop') == '0':
 else:
     winOnTop = True
 
+# Get JiYu Status.
+def getJiYuStatus():
+    jiYuExist = os.path.isfile(jiYuPath)
+    jiYuProc = findJiYuProc()
+    if jiYuProc != None:
+        jiYuRunningStatus = jiYuProc.status()
+    else:
+        jiYuRunningStatus = 'NotFound'
+    return jiYuExist, jiYuRunningStatus
+
+def findJiYuProc():
+    pids = psutil.pids()
+    for i in pids:
+        proc = psutil.Process(i)
+        procName = proc.name()
+        if procName == 'JiYuTrainer.exe':
+            return proc
+    return None
+
 # Kill JiYu with NTSD.
 def NTSDKill():
     if os.path.isfile(ntsdPath):
@@ -55,7 +76,7 @@ def NTSDKill():
 def suspend():
     if os.path.isfile(suspenderPath):
         if 'suspended' in os.popen(suspenderPath + ' StudentMain.exe'):
-             return 0
+            return 0
         else:
             return 1
     else:

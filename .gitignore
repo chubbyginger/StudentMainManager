@@ -1,6 +1,6 @@
 /__pycache__
 /ui/__pycache__
-/build
+/release
 /binaries/ntsd.exe
 /binaries/pssuspend.exe
 /binaries/PSethc.exe
