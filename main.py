@@ -10,7 +10,7 @@ import time
 
 pathToJiYu = utils.jiYuPath
 winOnTop = utils.winOnTop
-version = '1.0.1-beta'
+version = '1.0.2'
 
 
 class MainFrame(wx.Frame):
