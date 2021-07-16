@@ -14,6 +14,10 @@
 
   > 当然了，我觉得各位的电脑再落后也不至于Windows 2000吧。现在主流都是Windows 7了……
 
+## 下载
+
+请从[此处](https://github.com/yangshunhuai/StudentMainManager/releases)下载最新的发行版。
+
 ## 使用协议 & 免责声明
 
 若你使用本程序，即认为你已阅读并同意以下条款：
