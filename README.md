@@ -12,9 +12,13 @@
 
 ## 系统要求
 
-最低可在Windows XP中使用。在Windows 2000及以下，不能保证程序可以正常打开。
+目前暂时最低只能在Windows Vista中使用。在Windows 2000及以下，不能保证程序可以正常打开。
 
-> 当然了，我觉得各位的电脑再落后也不至于Windows 2000吧。现在主流都是Windows 7了……
+> 目前Windows XP的支持还在准备，但是编译工作十分艰难……
+> 在Windows XP中Python不断出现各种谜之故障：先是pip提示漏了库，装了库pip又说语法错误，反正pip彻底废了。
+> 在手动下载tar.gz安装的时候，先是出现各种依赖库问题，又是有一个叫做buildtools的库只支持Python 2，出现各种语法bug……
+
+如果实在无法支持Windows XP，将会放弃Windows XP的支持。
 
 ## 下载
 
