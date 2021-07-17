@@ -1,4 +1,6 @@
 # StudentMain Manager
+![](https://img.shields.io/badge/language-Python-blue.svg) ![](https://img.shields.io/badge/version-1.0.2-brightgreen) ![](https://img.shields.io/badge/license-Apache--2.0-brightgreen)
+
 一个专杀极域电子教室的Python程序，具有基于wxPython的GUI。
 
 ## 原理
