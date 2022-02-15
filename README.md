@@ -3,6 +3,11 @@
 
 一个专杀极域电子教室的Python程序，具有基于wxPython的GUI。
 
+## **StudentMain Manager将停止支持**
+本项目已停止支持。除非有严重问题，否则不会作任何更新。
+
+*[StudentMain Manager 2](https://github.com/yangshunhuai/StudentMainManager2)将会代替StudentMain Manager。*
+
 ## 原理
 * 使用NTSD调试工具，取得Debug权限后强制结束极域教室（无论极域教室有没有设置任务管理器防杀）。
 * 使用微软官方Sysinternals的工具[PsSuspend](https://docs.microsoft.com/zh-cn/sysinternals/downloads/pssuspend)挂起StudentMain进程，可以使得教师端定格画面但不会显示学生端断开。
@@ -21,8 +26,9 @@
 如果实在无法支持Windows XP，将会放弃Windows XP的支持。
 
 ## 下载
+**最近发现我的开发机中了病毒**，而本项目的发行版很有可能被感染了。
 
-请从[此处](https://github.com/yangshunhuai/StudentMainManager/releases)下载最新的发行版。
+**因此，如果有仍然在使用Version 1.0.2 Build 210716及更早版本的用户，请立即停止使用**，并[在此处](https://github.com/yangshunhuai/StudentMainManager/releases)获取重新编译的版本Version 1.0.2 Build 220215。
 
 ## 使用协议 & 免责声明
 
